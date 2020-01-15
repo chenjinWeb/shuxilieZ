@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from "../pages/login.vue"
 import Index from "../pages/index.vue"
+import ProductList from "../pages/productList.vue"
 import Detail from "../pages/detail.vue"
 import Mine from "../pages/mine.vue"
 import User from "../pages/user.vue"
@@ -55,6 +56,11 @@ const routes = [
     path: "/detail",
     name: 'detail',
     component: Detail
+  },
+  {
+    path: "/productList",
+    name: 'productList',
+    component: ProductList
   },
   ...index,
   ...mine,

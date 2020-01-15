@@ -63,8 +63,42 @@ export const getVerificationCode = (body = {}) => {
 
 // 登录 
 export const login = (body = {}) => {
+  return http.post(`/login/login`, body);
+}
+
+// 创建订单
+export const createOrder = (body = {}) => {
+  return http.post(`/order/createOrder`, body);
+}
+
+// 关闭订单
+export const orderClose = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/order/orderClose?${query}`)
+}
+
+// 查询订单状态
+export const queryOrderStatus = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/order/queryOrderStatus?${query}`)
+}
+
+// 查询订单信息
+export const queryUserOrderInfo = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/order/queryUserOrderInfo?${query}`)
+}
+
+// 获取用户openId
+export const getOpenId = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/wxchat/getOpenId?${query}`)
+}
+
+// 订单支付
+export const orderPay = (body = {}) => {
   let query = toBodyString(body);
-  return http.post(`/login/login`, query, { headers: { "Content-Type": "application/json" } });
+  return http.post(`/order/orderPay`, query);
 }
 
 

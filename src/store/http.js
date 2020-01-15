@@ -51,17 +51,17 @@ instance.interceptors.response.use(function (response) {
     return response.data;
   }
   //弹幕提示用户
-  if (response.data.result == 500) {
-    Toast(response.data.message);
+  if (response.data.statusCode == '24000001') {
+    Toast(response.data.msg);
   }
   //没有登录 转向登录页面
-  if (response.data.result == 401) {
+  if (response.data.statusCode == 401) {
     router.replace({ name: 'login' });
     return Promise.reject('请重新登录');
   }
   //没有登录 转向登录页面
-  if (response.data.result == 301) {
-    MessageBox.alert(`${response.data.message}`)
+  if (response.data.statusCode == 301) {
+    MessageBox.alert(`${response.data.msg}`)
     return
   }
   return Promise.reject('没有数据');

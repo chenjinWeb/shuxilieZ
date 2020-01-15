@@ -1,13 +1,30 @@
 <template>
   <div class="content-modal">
 
-    <y-header title="我的" router="-1"></y-header>
+    <y-header title="商品详情" router="-1"></y-header>
 
     <div class="content">
 
       <div class="scroll-content scroll_div" style="margin-top: 0.45rem;">
+        
+        <div class="img_list">
+          <img src="//img.alicdn.com/imgextra/i1/725677994/TB2W2sqkypnpuFjSZFkXXc4ZpXa_!!725677994.jpg_2200x2200Q90s50.jpg_.webp" align="absmiddle" />
+          <img src="//img.alicdn.com/imgextra/i4/4215886748/O1CN01eDZWjL1zidAnJC1kO_!!4215886748-0-scmitem6000.jpg_2200x2200Q90s50.jpg_.webp"  align="absmiddle" />
+          <img src="//img.alicdn.com/imgextra/i4/4215886748/O1CN01X5lxfO1zidAnO0Bw8_!!4215886748-0-scmitem6000.jpg_2200x2200Q90s50.jpg_.webp"  align="absmiddle"/>
+          <img src="//img.alicdn.com/imgextra/i4/4215886748/O1CN01IZtz6t1zidAqAZMBQ_!!4215886748-0-scmitem6000.jpg_2200x2200Q90s50.jpg_.webp"  align="absmiddle"/>
+          <img src="//img.alicdn.com/imgextra/i1/4215886748/O1CN01Ld2FUB1zidAnJ4ujL_!!4215886748-0-scmitem6000.jpg_2200x2200Q90s50.jpg_.webp"  align="absmiddle"/>
+          <img src="//img.alicdn.com/imgextra/i2/4215886748/O1CN01v8kfaX1zidApkFzM4_!!4215886748-0-scmitem6000.jpg_2200x2200Q90s50.jpg_.webp"  align="absmiddle"/>
+        </div>
 
-        <div href="javascript:;" class="user_account flex">
+        <div class="bottom_buy">
+          <div class="money">
+            <div class="now">现价:¥50.00</div>
+            <div class="old">原价:50.00</div>
+          </div>
+          <div class="buy">立即购买</div>
+        </div>
+
+        <!-- <div href="javascript:;" class="user_account flex">
           <div class="head_lef">
             <img :src="url" alt="" class="head_img">
           </div>
@@ -19,25 +36,25 @@
               </div>
             </a>
           </div>
-        </div>
+        </div> -->
 
-        <ul class="center_list">
+        <!-- <ul class="center_list">
 
           <li>
             <a href="javascript:;" class="central_list clear">
-              <!-- <div class="list_lef fl"><img src="../assets/img/yhq.png" alt="">优惠券</div> -->
+              <div class="list_lef fl"><img src="../assets/img/yhq.png" alt="">优惠券</div>
               <div class="list_rig fr"><i class="icon">&#xe633;</i></div>
             </a>
           </li>
 
           <li @click="fenXiang()">
             <a href="javascript:;" class="central_list clear">
-              <!-- <div class="list_lef fl"><img src="../assets/img/share.png" alt="">分享</div> -->
+              <div class="list_lef fl"><img src="../assets/img/share.png" alt="">分享</div>
               <div class="list_rig fr"><i class="icon">&#xe633;</i></div>
             </a>
           </li>
 
-        </ul>
+        </ul> -->
 
       </div>
 
@@ -54,14 +71,13 @@ export default {
   name: '',
   data () {
     return {
-      name: '',
-      url: '',
-      sex: ''
+      
     }
   },
   computed: {},
   mounted () {
-    this.getInfo();
+    // this.getInfo();
+    console.info(this.$route.params.id)
   },
   methods: {
     ...mapActions([
@@ -72,16 +88,13 @@ export default {
     getInfo () {
       this.userinfo_().then((res) => {
         if (res.result == 200) {
-          this.name = res.data.name;
-          this.url = res.data.userHeadImage;
-          this.sex = res.data.sex;
+          
         }
       })
     },
 
     shareInfo () {
       return new Promise((resolve, reject) => {
-
         this.getshareinfo_({ url: 'http://17engo.top/mine' }).then(res => {
           if (res.result == 200) {
             resolve(res.data);
@@ -91,7 +104,6 @@ export default {
     },
 
     fenXiang () {
-
       this.shareInfo().then((res) => {
         console.info(res)
         wx.config({
@@ -139,5 +151,50 @@ export default {
 }
 </script>
 <style>
-  @import "../assets/css/user.css";
+  
+
+  .img_list img{ width: 100%; outline: none}
+
+  .bottom_buy{
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    height: 0.5rem;
+    display: flex;
+    padding-bottom: 0.5rem;
+  }
+
+  .bottom_buy>div.money{
+    color: #000;
+    font-size: 0.14rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0.1rem;
+    justify-content: center;
+    height: 0.5rem;
+  }
+
+  .bottom_buy div.money .now{
+    color: #ff0036;
+  }
+
+  .bottom_buy div.money .old{
+    color: #ccc;
+    font-size: 0.12rem;
+    text-decoration: line-through
+  }
+
+  .bottom_buy div.buy{
+    flex: 2;
+    background: #ff0036;
+    color: #fff; 
+    text-align: center;
+    line-height: 0.5rem;
+    height: 0.5rem;
+    font-size: 0.16rem;
+  }
+
 </style>

@@ -3,13 +3,13 @@
     <div class="toolbar">
       <div class="bar-button">
           <span class="button-inner" v-if="!isshow && !isgo">
-              <i class="icon" @click=" $router.go(-1) ">&#xe60e;</i>
+              <i class="icon" @click=" $router.go(-1) ">&#xe60a;</i>
           </span>
           <span class="button-inner"  v-if="isshow">
               <i class="icon" @click="goback()" v-html="seticon"></i>
           </span>
         <router-link class="button-inner" v-else-if="router && router != -1" :to="router" replace>
-          <i class="icon">&#xe60e;</i>
+          <i class="icon">&#xe60a;</i>
         </router-link>
       </div>
 
@@ -21,7 +21,7 @@
 
       <div class="title-h">
         <div class="toolbar-title" v-if="title" @click="$h_callback">
-          {{title}} <i v-if="h_callback" class="icon">&#xe635;</i>
+          {{title}} <i v-if="h_callback" class="icon">&#xe60a;</i>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
     props: {
       seticon:{
         type:String,
-        default:"&#xe60e;"
+        default:"&#xe60a;"
       },
       isgo:{
         type:Boolean,
@@ -103,7 +103,7 @@
     z-index: 10;
     display: block;
     width: 100%;
-    background: #ffee00;
+    background: #4768f3;
   }
   .toolbar {
     display: -webkit-flex;
@@ -178,7 +178,7 @@
   }
   .button-inner i.icon {
     font-size: 20px;
-    color: #000;
+    color: #fff;
   }
   .title-h {
     display: -webkit-flex;
@@ -210,7 +210,7 @@
     white-space: nowrap;
     font-size: 0.18rem;
     text-align: center;
-    color: #000;
+    color: #fff;
     pointer-events: auto;
   }
 </style>

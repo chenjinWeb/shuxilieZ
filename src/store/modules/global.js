@@ -7,7 +7,13 @@ import {
   commitData, courselist, getmycourse, getorders, getshareinfo,
   getWordsTest, listInfo, projectlist, userinfo,
   getVerificationCode,
-  login
+  login,
+  createOrder,
+  orderClose,
+  orderPay,
+  queryOrderStatus,
+  queryUserOrderInfo,
+  getOpenId
 } from "../server/global-server"
 
 const state = {
@@ -68,6 +74,36 @@ const actions = {
   // 登录
   async login_ ({ commit, state }, body) {
     return await login(body)
+  },
+
+  // 创建订单
+  async createOrder_ ({ commit, state }, body) {
+    return await createOrder(body)
+  },
+
+  // 关闭订单
+  async orderClose_ ({ commit, state }, body) {
+    return await orderClose(body)
+  },
+
+  // 订单支付
+  async orderPay_ ({ commit, state }, body) {
+    return await orderPay(body)
+  },
+
+  // 查询订单状态
+  async queryOrderStatus_ ({ commit, state }, body) {
+    return await queryOrderStatus(body)
+  },
+
+  // 查询订单信息
+  async queryUserOrderInfo_ ({ commit, state }, body) {
+    return await queryUserOrderInfo(body)
+  },
+
+  // 获取openId
+  async getOpenId_ ({ commit, state }, body) {
+    return await getOpenId(body)
   },
 
 
