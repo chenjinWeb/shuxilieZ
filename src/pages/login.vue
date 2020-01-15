@@ -56,45 +56,35 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getVerificationCode_'
+      'getVerificationCode_',
+      'login_'
     ]),
     // 获取验证码
     getCode () {
+      if (!this.phone) {
+        Toast("手机号码不能为空");
+        return
+      }
       this.getVerificationCode_({ phone: this.phone }).then(res => {
         Toast('发送成功')
       })
     },
     // 登录
     login () {
-      if (!this.user.username) {
-        Toast("用户名不能为空");
+      if (!this.phone) {
+        Toast("手机号码不能为空");
         return
       }
-      if (!this.user.password) {
-        Toast("密码不能为空");
+      if (!this.code) {
+        Toast("验证码不能为空");
         return
       }
-      this.userlogin_(this.user).then(
-        (res) => {
-          if (res.success == 200) {
-            this.setToken(res.accessToken);
-            if (res.level > 3 && res.level != 31) {
-              window.location.href = 'https://yy.lcinc.cn/#/login';
-              return
-            }
-            if (this.checked) {
-              autoCookie(userCookie, null, { user_name: this.user.username, password: this.user.password });
-            } else {
-              removeCookie(userCookie);
-            }
-            if (!res.openid) {
-              setTimeout(() => {
-                this.goWxBind(res.userId);
-              }, 200)
-            }
-            this.getproductlimit();
-            this.$router.push({ name: 'index' });
-          }
+      this.login_({
+        phone: this.phone,
+        code: this.code
+      }).then(
+        res => {
+          this.$router.push({ name: 'index' });
         }
       )
     },

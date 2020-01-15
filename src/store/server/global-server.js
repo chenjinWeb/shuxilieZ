@@ -55,9 +55,16 @@ export const getshareinfo = (body = {}) => {
 
 
 // 鼠系列
+// 验证码
 export const getVerificationCode = (body = {}) => {
   const query = toBodyString(body)
   return http.get(`/login/getVerificationCode?${query}`)
+}
+
+// 登录 
+export const login = (body = {}) => {
+  let query = toBodyString(body);
+  return http.post(`/login/login`, query, { headers: { "Content-Type": "application/json" } });
 }
 
 

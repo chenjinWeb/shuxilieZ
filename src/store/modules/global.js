@@ -6,7 +6,8 @@ import {
   bycourse,
   commitData, courselist, getmycourse, getorders, getshareinfo,
   getWordsTest, listInfo, projectlist, userinfo,
-  getVerificationCode
+  getVerificationCode,
+  login
 } from "../server/global-server"
 
 const state = {
@@ -59,8 +60,14 @@ const actions = {
   },
 
   // 鼠系列
+  // 验证码
   async getVerificationCode_ ({ commit, state }, body) {
     return await getVerificationCode(body)
+  },
+
+  // 登录
+  async login_ ({ commit, state }, body) {
+    return await login(body)
   },
 
 
