@@ -1,0 +1,7 @@
+
+.scroll_div{ margin: 0.45rem 0; background: #fff; }
+.list_type{height: 0.7rem; display: flex; padding: 0.05rem; border-bottom: 1px solid #e5e5e5;}
+.check_div .el-checkbox__inner{ width: 20px; height: 20px;}
+.check_div .el-checkbox__inner::after{ height: 10px; left: 6px; top: 2px; width: 5px;}
+.paymoney{ position: fixed; bottom: 0; height: 0.4rem; background: #333; display: flex; width: 100%; line-height: 0.4rem; font-size: 0.14rem; color: #fff; z-index: 100;}
+

@@ -1,0 +1,223 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 1614422 */
+  src: url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.eot');
+  src: url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1614422_1803xfurhiyj.svg#iconfont') format('svg');
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+a,
+div,
+em,
+span,
+img,
+form,
+input,
+p,
+i {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+em,
+i,
+cite {
+  word-wrap: break-word;
+  font-style: normal;
+}
+
+ul li {
+  list-style: none;
+}
+
+a,
+a:visited,
+a:active {
+  color: #3C3C3C;
+  text-decoration: none;
+}
+
+a,
+button,
+span,
+i,
+div,
+h2,
+aside {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input:focus::-webkit-input-placeholder {
+  color: #b7b7b7;
+}
+
+input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+textarea:focus::-webkit-input-placeholder {
+  color: #b7b7b7;
+}
+
+textarea::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+progress,
+video {
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  box-sizing: content-box;
+}
+
+pre {
+  overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+input,
+button,
+textarea {
+  border: none;
+  /*-webkit-appearance: none;*/
+  -moz-appearance: none;
+  -webkit-border-image: none;
+  border-image: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0 none;
+}
+
+label,
+input,
+select,
+textarea {
+  font-family: inherit;
+  line-height: normal;
+}
+
+textarea {
+  overflow: auto;
+  height: auto;
+  font: inherit;
+  color: inherit;
+}
+
+textarea::-webkit-input-placeholder {
+  padding-left: 2px;
+}
+
+textarea:-ms-input-placeholder {
+  padding-left: 2px;
+}
+
+textarea::placeholder {
+  padding-left: 2px;
+}
+
+form,
+input,
+optgroup,
+select {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+a {
+  background-color: transparent;
+}
+
+div.el-select{ width: 90%;}
+div.el-date-editor.el-input{ width: 90%;}
+
+.search_input{ position: absolute; width: 94%; left: 3%; top: 2%; height: 0.4rem;z-index: 10;}
+.search_input .form{display: block; height: 0.4rem;line-height: 0.4rem; position: relative; background: #fff;}
+.search_input .form span{width: 30%;position: absolute; left: 0; padding-left: 0.2rem; font-size: 0.14rem; color: #ccc; text-align: left;}
+.search_input .form .search{width: 100%;position: absolute; right: 0; padding-left: 0.2rem; font-size: 0.14rem;}
+.select_area{ margin-top: 0rem; border-bottom: none; position: relative;}
+.search_btn{height: 0.3rem;  width: 0.6rem;  line-height: 0.3rem;  text-align: center;  position: absolute;  right: 0.3rem;  top: 0.05rem;  color: #fff;  font-size: 0.15rem;  background: #4fa5ff; border-radius: 0.05rem;}
+table{ text-align: left;}

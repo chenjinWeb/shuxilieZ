@@ -1,0 +1,78 @@
+.user_account{
+  padding: .2rem .125rem;
+  background: #ffee00;
+  position: relative;
+  width: 100%;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  min-height: 1rem;
+}
+
+.user_account .head_lef{
+  height: .59rem;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 50%;
+  overflow: hidden;
+}
+.user_account .head_lef .head_img{
+  display: block;
+  width: .59rem;
+  height: auto;
+}
+.head_rig{
+  -webkit-box-flex: 1;
+  flex: 1;
+  position: relative;
+  left: .59rem;
+  top: .05rem;
+}
+.head_rig .user_head{
+  display: block;
+}
+.head_rig .head_nickname{
+  text-align: left;
+  margin-left: .2rem;
+}
+.head_rig .head_nickname .nickname{
+  margin-bottom: .05rem;
+  font-size: .19rem;
+}
+.head_rig .head_nickname .phone_number{
+  font-size: .15rem;
+}
+
+.center_list{
+  padding: 0 .125rem;
+  background: #fff;
+  margin-bottom: .2rem;
+}
+
+.center_list li{
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+}
+
+.center_list li .central_list{
+  font-size: .14rem;
+  color: #666;
+  display: block;
+  height: .4rem;
+  line-height: .4rem;
+  justify-content: space-between;
+}
+.center_list li .central_list .list_lef{
+  width: 95%;
+}
+
+.center_list li .central_list .list_rig{
+  width: 5%;
+}
+.center_list li .central_list .list_lef img{
+  width: .2rem;
+  vertical-align: middle;
+  margin-right: .12rem;
+}
+
