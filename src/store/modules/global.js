@@ -13,7 +13,10 @@ import {
   orderPay,
   queryOrderStatus,
   queryUserOrderInfo,
-  getOpenId
+  getOpenId,
+  getCommodityList,
+  getCommodityDetail,
+  getCodeUrl
 } from "../server/global-server"
 
 const state = {
@@ -104,6 +107,21 @@ const actions = {
   // 获取openId
   async getOpenId_ ({ commit, state }, body) {
     return await getOpenId(body)
+  },
+
+  // 获取url
+  async getCodeUrl_ ({ commit, state }, body) {
+    return await getCodeUrl(body)
+  },
+
+  // 获取商品列表
+  async getCommodityList_ ({ commit, state }, body) {
+    return await getCommodityList(body)
+  },
+
+  // 获取商品列表
+  async getCommodityDetail_ ({ commit, state }, body) {
+    return await getCommodityDetail(body)
   },
 
 

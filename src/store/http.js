@@ -7,6 +7,7 @@
 import axios from 'axios';
 import { baseUrl } from './config';
 import router from '../router';
+import { mcjCookie } from '../utils'
 
 import { Indicator, Toast, MessageBox } from 'mint-ui';
 
@@ -14,12 +15,13 @@ axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL = '/api';
 
-/*axios.defaults.withCredentials=true;*/
-
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
 axios.defaults.timeout = 50000;
+
+let AUTH_TOKEN = (function () {
+  return mcjCookie.get("token");
+})();
+
+axios.defaults.headers.common["token"] = AUTH_TOKEN;
 
 //保证所有的请求完成之后关闭loading
 Indicator.list = [];
@@ -33,6 +35,14 @@ let instance = axios.create();
 instance.interceptors.request.use(function (config) {
   Indicator.open({ text: '加载中...', spinnerType: 'fading-circle' });
   Indicator.list.push(1);
+  let url = config.url;
+  if (url.indexOf("login") > -1) {
+    localStorage.setItem('token', "");
+    config.headers.token = "";
+    return config
+  }
+  config.headers.token = mcjCookie.get("token");
+  return config;
   return config;
 }, function (error) {
   Indicator.list.pop();

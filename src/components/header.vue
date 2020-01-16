@@ -2,12 +2,12 @@
   <div class="header">
     <div class="toolbar">
       <div class="bar-button">
-          <span class="button-inner" v-if="!isshow && !isgo">
-              <i class="icon" @click=" $router.go(-1) ">&#xe60a;</i>
-          </span>
-          <span class="button-inner"  v-if="isshow">
-              <i class="icon" @click="goback()" v-html="seticon"></i>
-          </span>
+        <span class="button-inner" v-if="!isshow && !isgo">
+          <i class="icon" @click=" $router.go(-1) ">&#xe60a;</i>
+        </span>
+        <span class="button-inner" v-if="isshow">
+          <i class="icon" @click="goback()" v-html="seticon"></i>
+        </span>
         <router-link class="button-inner" v-else-if="router && router != -1" :to="router" replace>
           <i class="icon">&#xe60a;</i>
         </router-link>
@@ -15,7 +15,7 @@
 
       <div class="bar-button" @click="$r_callback">
         <router-link v-if="r_router && r_title" :to="r_router" v-text="r_title" class="button-inner" replace></router-link>
-        <span v-if="r_title && !r_router" class="button-inner"  v-text="r_title" @click="sured()"></span>
+        <span v-if="r_title && !r_router" class="button-inner" v-text="r_title" @click="sured()"></span>
         <span v-if="r_icon" class="button-inner"> <i class="icon" v-html="r_icon" @click="goPage()"></i> </span>
       </div>
 
@@ -29,70 +29,70 @@
 </template>
 
 <script>
-  export default {
-    name: 'y-header',
-    props: {
-      seticon:{
-        type:String,
-        default:"&#xe60a;"
-      },
-      isgo:{
-        type:Boolean,
-        default:false
-      },
-      isshow:{
-        type:Boolean,
-        default:false,
-      },
-      title: {
-        type: String,
-        default: "标题",
-      },
-      r_title: {
-        type: String,
-        default: "",
-      },
-      router: {
-        type: String,
-      },
-      r_router: {
-        type: Object,
-      },
-      r_callback: {
-        type: Function,
-      },
-      h_callback: {
-        type: Function,
-      },
-      r_icon: {
-        type: String,
-      },
+export default {
+  name: 'y-header',
+  props: {
+    seticon: {
+      type: String,
+      default: "&#xe60a;"
     },
-    mounted: function () {
+    isgo: {
+      type: Boolean,
+      default: false
     },
-    methods: {
-      $r_callback(){
-        this.$emit('r_callback');
-        if (this.r_callback && typeof this.r_callback === "function") {
-          this.r_callback()
-        }
-      },
-      $h_callback(){
-        if (this.h_callback && typeof this.h_callback === "function") {
-          this.h_callback()
-        }
-      },
-      goPage(){
-        this.$emit("go")
-      },
-      sured(){
-        this.$emit("sured")
-      },
-      goback(){
-        this.$emit("goback")
+    isshow: {
+      type: Boolean,
+      default: false,
+    },
+    title: {
+      type: String,
+      default: "标题",
+    },
+    r_title: {
+      type: String,
+      default: "",
+    },
+    router: {
+      type: String,
+    },
+    r_router: {
+      type: String,
+    },
+    r_callback: {
+      type: Function,
+    },
+    h_callback: {
+      type: Function,
+    },
+    r_icon: {
+      type: String,
+    },
+  },
+  mounted: function () {
+  },
+  methods: {
+    $r_callback () {
+      this.$emit('r_callback');
+      if (this.r_callback && typeof this.r_callback === "function") {
+        this.r_callback()
       }
+    },
+    $h_callback () {
+      if (this.h_callback && typeof this.h_callback === "function") {
+        this.h_callback()
+      }
+    },
+    goPage () {
+      this.$emit("go")
+    },
+    sured () {
+      this.$emit("sured")
+    },
+    goback () {
+      this.$emit("goback")
     }
   }
+}
 </script>
 
 <style>

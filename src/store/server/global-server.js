@@ -95,10 +95,28 @@ export const getOpenId = (body = {}) => {
   return http.get(`/wxchat/getOpenId?${query}`)
 }
 
+// 获取url
+export const getCodeUrl = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/wxchat/getCodeUrl?${query}`)
+}
+
 // 订单支付
 export const orderPay = (body = {}) => {
   let query = toBodyString(body);
   return http.post(`/order/orderPay`, query);
+}
+
+// 商品列表
+export const getCommodityList = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/commodity/getCommodityList?${query}`)
+}
+
+// 商品详情
+export const getCommodityDetail = (body = {}) => {
+  let query = toBodyString(body);
+  return http.get(`/commodity/getCommodityDetail?${query}`);
 }
 
 

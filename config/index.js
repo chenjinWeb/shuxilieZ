@@ -9,7 +9,7 @@ module.exports = {
     // Paths
     env: require('./dev.env'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     proxyTable: {
       '/api': {
         target: "http://49.235.161.190:8080/",//设置你调用的接口域名和端口号 别忘了加http

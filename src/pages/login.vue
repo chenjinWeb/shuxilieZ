@@ -42,7 +42,7 @@
 
 <script>
 import { mapGetters, mapActions, mapState, mapMutations } from 'vuex';
-// import { autoCookie, removeCookie } from "../utils"
+import { mcjCookie } from "../utils"
 import { Toast } from 'mint-ui';
 
 export default {
@@ -50,13 +50,15 @@ export default {
     return {
       phone: '',
       code: '',
+      openId: '',
       checked: true,
-      times:59,
-      isClick:true,
-      timer:null
+      times: 59,
+      isClick: true,
+      timer: null
     }
   },
   mounted: function () {
+    this.openId = this.$route.query.openId || ''
   },
   methods: {
     ...mapActions([
@@ -73,14 +75,14 @@ export default {
         Toast('发送成功')
         this.isClick = false;
         clearInterval(this.timer)
-        this.timer = setInterval(()=>{
+        this.timer = setInterval(() => {
           this.times--
-          if(this.times == 0){
+          if (this.times == 0) {
             this.isClick = true;
             this.times = 59;
             clearInterval(this.timer)
           }
-        },500)
+        }, 1000)
       })
     },
     // 登录
@@ -95,10 +97,12 @@ export default {
       }
       this.login_({
         phone: this.phone,
-        code: this.code
+        code: this.code,
+        openId: this.openId
       }).then(
         res => {
           clearInterval(this.timer)
+          mcjCookie.set("token", res.data, 10)
           this.$router.push({ name: 'productList' });
         }
       )
@@ -132,6 +136,7 @@ export default {
     //   );
     // }
   }
+
 }
 </script>
 
@@ -143,7 +148,9 @@ export default {
   .login_body .form .ifrom span{ position: absolute; width: 0.2rem; height: 0.2rem; font-size: 0.2rem; color: #5b73ed; left: 0.1rem; top: 0.1rem;}
   .login_body .form .ifrom em{ position: absolute; height: 0.4rem; width: 1rem; right: 0; top: 0; line-height: 0.4rem; text-align: center;}
   .login_body .form .ifrom em.time{  color: #ccc;}
-  .login_body .form .ifrom input{background: none; width: 100%;height: 0.4rem;font-size: 0.14rem; text-indent: 0.4rem; border: 1px solid #ececee; border-radius: 0.5rem;}
+  .login_body .form .ifrom input{background: none; width: 100%;height: 0.4rem;font-size: 0.14rem; text-indent: 0.4rem; border: 1px solid #ececee; border-radius: 0.5rem;appearance:button;
+   -moz-appearance:button; /* Firefox */
+   -webkit-appearance:button; /* Safari 和 Chrome */}
   .sublogin{margin-top: 0.15rem; background: #4768f3; color: #fff; text-align: center; height: 0.4rem; line-height: 0.4rem; border-radius: 0.2rem; font-size: 0.14rem; box-shadow: 1px 1px 6px #2e44a4}
   .drop-down{font-size: 0.14rem;color: #3798ff !important; position: absolute;bottom: 0.15rem; left: 0;right: 0}
 </style>

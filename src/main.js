@@ -27,6 +27,10 @@ import 'video.js/dist/video-js.css'
 import VideoPlayer from 'vue-video-player';
 Vue.use(VideoPlayer)
 
+import Vconsole from 'vconsole'
+const vConsole = new Vconsole()
+Vue.use(vConsole)
+
 import wx from "weixin-js-sdk"
 
 /* eslint-disable no-new */

@@ -39,13 +39,13 @@ const user = [
 const routes = [
   {
     path: "*",
-    redirect: "/index",
-    component: Index
+    redirect: "/login",
+    component: Login
   },
   {
     path: "/",
-    redirect: "/index",
-    component: Index
+    redirect: "/login",
+    component: Login
   },
   {
     path: "/login",
@@ -53,7 +53,7 @@ const routes = [
     component: Login
   },
   {
-    path: "/detail",
+    path: "/detail/:id",
     name: 'detail',
     component: Detail
   },
