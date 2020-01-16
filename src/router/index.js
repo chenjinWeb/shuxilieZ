@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Login from "../pages/login.vue"
 import Index from "../pages/index.vue"
 import ProductList from "../pages/productList.vue"
+import Success from "../pages/success.vue"
+import OrderList from "../pages/orderList.vue"
 import Detail from "../pages/detail.vue"
 import Mine from "../pages/mine.vue"
 import User from "../pages/user.vue"
@@ -61,6 +63,16 @@ const routes = [
     path: "/productList",
     name: 'productList',
     component: ProductList
+  },
+  {
+    path: "/success",
+    name: 'success',
+    component: Success
+  },
+  {
+    path: "/orderList",
+    name: 'orderList',
+    component: OrderList
   },
   ...index,
   ...mine,

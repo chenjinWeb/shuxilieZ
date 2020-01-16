@@ -7,9 +7,8 @@ const path = require('path')
 module.exports = {
   dev: {
     // Paths
-    env: require('./dev.env'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     proxyTable: {
       '/api': {
         target: "http://49.235.161.190:8080/",//设置你调用的接口域名和端口号 别忘了加http
@@ -23,7 +22,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 6060, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 7070, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
