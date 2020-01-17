@@ -25,6 +25,15 @@
           <div class="buy">立即购买</div>
         </div>
 
+        <van-popup v-model="show">
+          <div>
+            <img :src="imgSrc" />
+          </div>
+          <div style="margin-bottom: 0.1rem;">
+            扫一扫，微信支付
+          </div>
+        </van-popup>
+
         <!-- <div href="javascript:;" class="user_account flex">
           <div class="head_lef">
             <img :src="url" alt="" class="head_img">
@@ -68,12 +77,15 @@
 
 import { mapActions } from "vuex"
 import { mcjCookie, isWeiXin, isApp, getUserIP } from '../utils'
+import { Toast } from 'vant'
 
 export default {
   name: '',
   data () {
     return {
-      info: {}
+      info: {},
+      imgSrc: '',
+      show: false
     }
   },
   computed: {},
@@ -112,16 +124,26 @@ export default {
         commodityId: this.info.commodityId,
         fee: this.info.fee,
         openId: mcjCookie.get('openId'),
-        payType: isWeiXin() ? 'WXJSAPI' : isApp() ? 'WH5' : 'NATIVE',
-        spBillCreateIp: '10.3.0.133'
+        payType: isWeiXin() ? 'WXJSAPI' : isApp() ? 'WXH5' : 'NATIVE',
+        spBillCreateIp: returnCitySN["cip"]
       }).then(res => {
-        this.paymoney(res.data)
+        if (isWeiXin()) {
+          this.paymoney(res.data)
+          return
+        } else if (isApp()) {
+          this.$router.push({ path: 'success', query: { orderId: res.data.orderId } });
+          window.location.href = res.data.url;
+          return
+        } else {
+          this.$router.push({ name: 'success', query: { url: res.data.url, orderId: res.data.orderId } });
+        }
       })
     },
 
     paymoney (data) {
       this.weixinpay(data, (success) => {
-        console.info(success)
+        Toast('支付成功')
+        this.$router.push({ name: 'orderList' });
       }, (err) => {
         //alert(err)
       })

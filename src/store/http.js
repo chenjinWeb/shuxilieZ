@@ -7,7 +7,7 @@
 import axios from 'axios';
 import { baseUrl } from './config';
 import router from '../router';
-import { mcjCookie } from '../utils'
+import { mcjCookie, isWeiXin } from '../utils'
 
 import { Indicator, Toast, MessageBox } from 'mint-ui';
 
@@ -18,7 +18,7 @@ axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 50000;
 
 let AUTH_TOKEN = (function () {
-  return mcjCookie.get("token");
+  return mcjCookie.get("token") || '';
 })();
 
 axios.defaults.headers.common["token"] = AUTH_TOKEN;
@@ -41,8 +41,7 @@ instance.interceptors.request.use(function (config) {
     config.headers.token = "";
     return config
   }
-  config.headers.token = mcjCookie.get("token");
-  return config;
+  config.headers.token = mcjCookie.get("token") || '';
   return config;
 }, function (error) {
   Indicator.list.pop();
@@ -56,7 +55,6 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   Indicator.list.pop();
   Indicator.list.length === 0 && Indicator.close();
-  console.info(response)
   if (response.status == 200 && response.data.statusCode == "00000000") {
     return response.data;
   }
@@ -65,14 +63,10 @@ instance.interceptors.response.use(function (response) {
     Toast(response.data.msg);
   }
   //没有登录 转向登录页面
-  if (response.data.statusCode == 401) {
-    router.replace({ name: 'login' });
+  if (response.data.statusCode == '24001110') {
+    Toast(response.data.msg);
+    // router.replace({ name: 'login' });
     return Promise.reject('请重新登录');
-  }
-  //没有登录 转向登录页面
-  if (response.data.statusCode == 301) {
-    MessageBox.alert(`${response.data.msg}`)
-    return
   }
   return Promise.reject('没有数据');
 }, function (error) {

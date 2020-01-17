@@ -21,7 +21,7 @@
 
 <script>
 import { mapActions } from "vuex"
-import { wxLogin, mcjCookie } from '../utils'
+import { wxLogin, mcjCookie, isWeiXin, GetQueryString } from '../utils'
 export default {
   name: '',
   data () {
@@ -72,13 +72,17 @@ export default {
     // 获取URL
     getUrl () {
       this.getCodeUrl_().then(res => {
-        wxLogin('wx9fbe5b447cfa72a1', 'http://nptckr.cn/login')
+        wxLogin('wx9fbe5b447cfa72a1', window.location.href)
       })
     }
   },
 
   beforeRouteEnter (to, from, next) {
     next(vm => {
+      if (!isWeiXin()) {
+        vm.isToken = false;
+        return
+      }
       if (from.path !== '/') {
         return
       }

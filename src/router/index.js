@@ -41,13 +41,13 @@ const user = [
 const routes = [
   {
     path: "*",
-    redirect: "/login",
-    component: Login
+    redirect: "/productList",
+    component: ProductList
   },
   {
     path: "/",
-    redirect: "/login",
-    component: Login
+    redirect: "/productList",
+    component: ProductList
   },
   {
     path: "/login",
@@ -81,5 +81,5 @@ const routes = [
 
 export default new Router({
   routes,
-  mode: "hash"
+  mode: "history"
 })

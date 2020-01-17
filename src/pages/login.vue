@@ -15,11 +15,11 @@
           <div class="form">
             <div class="ifrom">
               <span class="icon">&#xe601;</span>
-              <input type="text" name="name" placeholder="请输入手机号码" class="name" v-model="phone">
+              <input type="text" placeholder="请输入手机号码" class="name" v-model="phone">
             </div>
             <div class="ifrom">
               <span class="icon">&#xe600;</span>
-              <input type="password" name="password" placeholder="请输入验证码" v-model="code">
+              <input type="password" placeholder="请输入验证码" v-model="code">
               <em @click="getCode()" v-if="isClick">获取验证码</em>
               <em v-if="!isClick" class="time">{{times}}s之后重试</em>
             </div>
@@ -54,11 +54,26 @@ export default {
       checked: true,
       times: 59,
       isClick: true,
-      timer: null
+      timer: null,
+      isReset: false
     }
   },
   mounted: function () {
     this.openId = this.$route.query.openId || ''
+    document.body.addEventListener('focusin', () => {
+      // 软键盘弹出的事件处理
+      this.isReset = false
+    })
+    document.body.addEventListener('focusout', () => {
+      // 软键盘收起的事件处理
+      this.isReset = true
+      setTimeout(() => {
+        // 当焦点在弹出层的输入框之间切换时先不归位
+        if (this.isReset) {
+          window.scroll(0, 0) // 失焦后强制让页面归位
+        }
+      }, 300)
+    })
   },
   methods: {
     ...mapActions([
@@ -106,42 +121,14 @@ export default {
           this.$router.push({ name: 'productList' });
         }
       )
-    },
-    // getproductlimit () {
-    //   this.storehouse_({ type: 0 }).then(res => {
-    //     if (res.success == 200) {
-    //       this.returnlimit(res.extrasInfo.show);
-    //     }
-    //   })
-    // },
-    // weiXinLogin () {
-    //   this.wxlogin_().then((res) => {
-    //     if (res.success == 200) {
-    //       window.location.href = res.url;
-    //     }
-    //   })
-    // },
-    // goWxBind (id) {
-    //   let config = { confirmButtonText: '跳过', cancelButtonText: '绑定', confirmButtonClass: 'cancel', cancelButtonClass: 'confirm' };
-    //   MessageBox.confirm('您还未绑定微信帐号，绑定后，可直接用微信登录', config).then(
-    //     () => {
-    //     },
-    //     () => {
-    //       this.wxbind_({ userId: id }).then((res) => {
-    //         if (res.success == 200) {
-    //           window.location.href = res.url;
-    //         }
-    //       })
-    //     }
-    //   );
-    // }
+    }
   }
 
 }
 </script>
 
 <style scoped>
-  .login_body{background: #fff;background-size: cover; width: 100%;height: 100%; position: relative;}
+  .login_body{background: #fff;background-size: cover; width: 100%;height: 100%; position: absolute; left: 0; top: 0; bottom: 0; right: 0;}
   .login_body .body_top{ height: 30%; width: 100%; position: relative;}
   .login_body .form{padding: 0 0.25rem; position: relative;top: 10%;}
   .login_body .form .ifrom{ margin-bottom: 0.2rem; position: relative}

@@ -16,7 +16,8 @@ import {
   getOpenId,
   getCommodityList,
   getCommodityDetail,
-  getCodeUrl
+  getCodeUrl,
+  orderImmediately
 } from "../server/global-server"
 
 const state = {
@@ -87,6 +88,11 @@ const actions = {
   // 关闭订单
   async orderClose_ ({ commit, state }, body) {
     return await orderClose(body)
+  },
+
+  // 关闭订单
+  async orderImmediately_ ({ commit, state }, body) {
+    return await orderImmediately(body)
   },
 
   // 订单支付

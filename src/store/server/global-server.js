@@ -77,6 +77,12 @@ export const orderClose = (body = {}) => {
   return http.get(`/order/orderClose?${query}`)
 }
 
+// 立即领取
+export const orderImmediately = (body = {}) => {
+  const query = toBodyString(body)
+  return http.get(`/order/orderImmediately?${query}`)
+}
+
 // 查询订单状态
 export const queryOrderStatus = (body = {}) => {
   const query = toBodyString(body)

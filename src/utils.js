@@ -120,6 +120,12 @@ const getUserIP = (onNewIP) => { //  onNewIp - your listener function for new IP
   };
 }
 
+const GetQueryString = (name) => {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]); return null;
+}
+
 export {
   toBodyString,
   toQueryPair,
@@ -127,5 +133,6 @@ export {
   wxLogin,
   isWeiXin,
   isApp,
-  getUserIP
+  getUserIP,
+  GetQueryString
 }
