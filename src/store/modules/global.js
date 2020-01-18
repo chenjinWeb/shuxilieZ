@@ -17,7 +17,8 @@ import {
   getCommodityList,
   getCommodityDetail,
   getCodeUrl,
-  orderImmediately
+  orderImmediately,
+  getUserInfo
 } from "../server/global-server"
 
 const state = {
@@ -128,6 +129,11 @@ const actions = {
   // 获取商品列表
   async getCommodityDetail_ ({ commit, state }, body) {
     return await getCommodityDetail(body)
+  },
+
+  // 获取用户信息
+  async getUserInfo_ ({ commit, state }, body) {
+    return await getUserInfo(body)
   },
 
 

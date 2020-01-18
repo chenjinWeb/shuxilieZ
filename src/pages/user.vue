@@ -1,7 +1,7 @@
 <template>
   <div class="content-modal">
 
-    <y-header title="我的" router="-1"></y-header>
+    <y-header title="我的"></y-header>
 
     <div class="content">
 
@@ -39,6 +39,8 @@
 
         </ul>
 
+        <y-footer></y-footer>
+
       </div>
 
     </div>
@@ -65,12 +67,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'userinfo_',
-      'getshareinfo_'
+      'getUserInfo_',
     ]),
 
     getInfo () {
-      this.userinfo_().then((res) => {
+      this.getUserInfo_().then((res) => {
         if (res.result == 200) {
           this.name = res.data.name;
           this.url = res.data.userHeadImage;

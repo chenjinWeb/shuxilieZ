@@ -1,6 +1,6 @@
 <template>
   <div class="content-modal">
-    <y-header title="鼠系列" router="-1" :r_title="isToken? '' : '登录'" :r_router="rRouter"></y-header>
+    <y-header title="鼠系列" router="-1"></y-header>
     <div class="content">
       <div class="scroll-content scroll_div" style="margin-top: 0.45rem;">
 
@@ -15,6 +15,7 @@
 
         </div>
       </div>
+      <y-footer></y-footer>
     </div>
   </div>
 </template>

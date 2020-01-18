@@ -1,13 +1,13 @@
 <template>
   <div class="tabbar">
-    <router-link to="/index" class="tab-button" active-class="active" :class="{'active':getPath == '/'}" replace>
+    <!-- <router-link to="/index" class="tab-button" active-class="active" :class="{'active':getPath == '/'}" replace>
       <span class="tab-button-icon home-icon"></span>
       <span class="tab-button-text">首页</span>
-    </router-link>
+    </router-link> -->
 
-    <router-link to="/order" class="tab-button" active-class="active" replace>
+    <router-link to="/productList" class="tab-button" active-class="active" replace>
       <span class="tab-button-icon pickup-icon"></span>
-      <span class="tab-button-text">订单</span>
+      <span class="tab-button-text">首页</span>
     </router-link>
 
     <router-link to="/user" class="tab-button" active-class="active" replace>

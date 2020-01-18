@@ -125,5 +125,10 @@ export const getCommodityDetail = (body = {}) => {
   return http.get(`/commodity/getCommodityDetail?${query}`);
 }
 
+// 用户信息
+export const getUserInfo = (body = {}) => {
+  return http.post(`/user/getUserInfo`, body);
+}
+
 
 

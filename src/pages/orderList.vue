@@ -2,13 +2,12 @@
   <div class="content-modal">
     <y-header title="我的订单" router="-1"></y-header>
     <div class="content">
-      <div class="scroll-content scroll_div" style="margin-top: 0.45rem; background: #6161b9;">
+      <div class="scroll-content scroll_div" style="margin-top: 0.45rem; background: #fff;">
 
-        <div class="order_list" v-for="item in orderList" :key="item.commodityId">
+        <div class="order_list" v-for="(item,index) in orderList" :key="index">
 
           <div class="list_info">
             <div class="info_left" style=" font-size: 0.16rem;">{{item.commodityName}}</div>
-            <div class="info_right_btn" v-if="item.status == '待支付'" @click="closeOrder(item.orderId)">关闭</div>
           </div>
 
           <div class="list_info">
@@ -25,17 +24,21 @@
             <div class="info_left">交易状态:</div>
             <div class="info_right" :style="{color: item.status == '待支付'? 'red' : 'green'}">{{item.status}}</div>
           </div>
+          <div v-if="item.status == '交易成功'"
+            style="width: 1.0rem; background: #ffbe9e; height: 0.3rem; background: red; color: #fff; line-height: 0.3rem; font-size: 0.14rem; float: right; margin-left: 0.1rem;"
+            @click="getLink(item.orderId)">
+            立即领取
+          </div>
           <div v-if="item.status == '待支付'"
-            style="width: 90%; margin: 0 auto; background: #ffbe9e; height: 0.3rem; border-radius: 0.2rem; line-height: 0.3rem; font-size: 0.14rem;"
+            style="width: 1.0rem; background: #ffbe9e; height: 0.3rem; background: red; color: #fff; line-height: 0.3rem; font-size: 0.14rem; float: right; margin-left: 0.1rem;"
             @click="pay(item)">
             立即支付
           </div>
-          <div v-if="item.status != '待支付'"
-            style="width: 90%; margin: 0 auto; background: #ffbe9e; height: 0.3rem; border-radius: 0.2rem; line-height: 0.3rem; font-size: 0.14rem;"
-            @click="getLink(item.orderId)">
-            http://wwww.baidu.com
+          <div v-if="item.status == '待支付'"
+            style="width: 1.0rem; border: 1px solid #e5e5e5; height: 0.3rem; line-height: 0.3rem; font-size: 0.14rem; float: right;"
+            @click="closeOrder(item.orderId)">
+            删除订单
           </div>
-          <div v-if="item.status != '待支付'" style="width: 90%; margin: 0 auto; height: 0.2rem; line-height: 0.2rem; margin-top: 0.05rem;">点击链接领取</div>
         </div>
 
       </div>
@@ -94,10 +97,16 @@ export default {
 
     // 关闭订单
     closeOrder (orderId) {
-      this.orderClose_({ orderId }).then(res => {
-        Toast('关闭订单成功!')
-        this.getUserOrder();
-      })
+      Dialog.confirm({
+          title: '标题',
+          message: '确定要删除该订单？'
+        }).then(() => {
+          this.orderClose_({ orderId }).then(res => {
+            Toast('关闭订单成功!')
+            this.getUserOrder();
+          })
+        }).catch(() => {
+        });
     },
 
     // 微信支付
@@ -117,7 +126,7 @@ export default {
           this.paymoney(res.data)
           return
         } else if (isApp()) {
-          this.$router.push({ path: 'success', query: { orderId: res.data.orderId } });
+          this.$router.push({ name: 'success', query: { orderId: res.data.orderId } });
           window.location.href = res.data.url;
           return
         } else {
@@ -181,7 +190,8 @@ export default {
 </script>
 
 <style scoped>
-    .order_list{width: 90%; margin: 0 auto; height: 2.2rem; background: #fff; border-radius: 0.15rem; overflow: hidden; margin-bottom: 0.2rem;}
+    .order_list{ margin: 0 auto; background: #fff; overflow: hidden; border-bottom: 1px solid #e5e5e5; padding: 0 0.1rem; padding-bottom: 0.1rem;}
+    .order_list:last-child{ border-bottom: none;}
     .order_list_title{height: 0.3rem; background: #fff8ee; width: 100%; padding:0 0.1rem; text-align: left; line-height: 0.3rem; font-size: 0.16rem;}
     .list_info{height: 0.4rem; width: 100%; padding:0 0.1rem; line-height: 0.4rem; display: flex;justify-content: space-between;}
     .info_left{color: #696969;}
